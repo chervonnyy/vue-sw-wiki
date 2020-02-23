@@ -1,28 +1,41 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  	<div id="app">
+		<h1>Charts App</h1>
+		<hr>
+		<div v-for="film in films" :key="film.id">
+			<h2>{{ film.title }}</h2>
+			<p>{{ film.director }}</p>
+		</div>
+  	</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+	name: 'App',
+	data() {
+		return {
+			films: []
+		}
+	},
+	async mounted() {
+		const films = [];
+		for (let i = 1; i < 8; i++) {
+			const film = fetch(`https://swapi.co/api/films/${i}`)
+				.then(resp => resp.json());
+			films.push(film);
+		}
+
+		this.films = await Promise.all(films);
+	}
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+	font-family: Avenir, Helvetica, Arial, sans-serif;
+	text-align: center;
+	color: #2c3e50;
+	margin-top: 60px;
 }
 </style>
