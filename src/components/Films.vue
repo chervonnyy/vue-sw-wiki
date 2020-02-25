@@ -2,7 +2,9 @@
     <div>
         <div class="films" v-if="isLoaded">
             <div class="film" v-for="film in this.films" :key="film.id">
-                <h2>{{film.title}}</h2>
+                <h2>
+                    <router-link :to="`/film/${film.url.split('/films/')[1]}`">{{film.title}}</router-link>
+                </h2>
                 <p>{{film.director}} | {{film.release_date.split('-')[0]}}</p>
             </div>
         </div>
@@ -39,10 +41,14 @@ export default {
 
 <style lang="sass" scoped>
 h2
-    cursor: pointer;
-    margin-bottom: 0px;
+    cursor: pointer
+    margin-bottom: 0px
+
+    a
+        color: #2c3e50
+        text-decoration: none
 
 p
-    margin: 0px;
+    margin: 0px
 </style>
 
