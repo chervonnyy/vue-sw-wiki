@@ -1,4 +1,6 @@
-# vue-charts
+# vue-sw-wiki
+
+Star Wars wiki build with Vue.js
 
 ## Project setup
 ```
