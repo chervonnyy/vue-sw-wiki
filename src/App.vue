@@ -1,50 +1,36 @@
 <template>
       <div id="app">
-        <h1>SW Api</h1>
+        <h1>Vue SW wiki</h1>
+        <ul>
+            <li><router-link to="/films">Films</router-link></li>
+            <li><router-link to="/films">Characters</router-link></li>
+            <li><router-link to="/">Home</router-link></li>
+        </ul>
         <hr>
-        <div class="content" v-if="isLoaded">
-            <div class="films" v-for="film in films" :key="film.id">
-                <h2>{{film.title}}</h2>
-                <p>{{film.director}}</p>
-            </div>
-        </div>
-        <Preloader v-else />
+
+        <router-view />
       </div>
 </template>
 
-<script>
-import Preloader from './components/Preloader';
-
-export default {
-    name: 'App',
-    data() {
-        return {
-            films: [],
-            isLoaded: false
-        }
-    },
-    async mounted() {
-        const films = [];
-        for (let i = 1; i < 8; i++) {
-            const film = fetch(`https://swapi.co/api/films/${i}`)
-                .then(resp => resp.json());
-            films.push(film);
-        }
-
-        this.films = await Promise.all(films);
-        this.isLoaded = true;
-    },
-    components: {
-        Preloader
-    }
-}
-</script>
-
-<style>
-#app {
+<style lang="sass" scoped>
+#app
     font-family: Avenir, Helvetica, Arial, sans-serif;
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
-}
+
+    ul
+        list-style: none
+        display: flex
+        justify-content: center
+        width: 300px
+        margin: auto
+        padding: 0
+
+        li
+            margin: 0 10px
+            cursor: pointer
+
+            a
+                color: #000
 </style>
