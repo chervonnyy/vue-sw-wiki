@@ -1,6 +1,7 @@
 # vue-sw-wiki
 
-Star Wars wiki build with Vue.js
+#### Star Wars wiki build with Vue.js
+It [just works](https://chervonnyy.github.io/vue-sw-wiki/) (almost)
 
 ## Project setup
 ```
